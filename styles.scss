@@ -14,30 +14,6 @@
     --font-family-noto: 'Noto Serif', serif;
 }
 
-.slider {
-    overflow: hidden;
-    width: 60%;
-    justify-content: center;
-    margin: auto;
-    &-btn {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: 45%;
-        border-radius: 50%;
-        z-index: 2;
-        cursor: pointer;
-        border: none;
-        background-color: var(--bg-color-white);
-    }
-    &_arrow-left {
-        left: 0px;
-    }
-    &_arrow-right {
-        right: 0px;
-    }
-}
-
 @mixin align-center {
     display: flex;
     align-items: center;
@@ -139,7 +115,7 @@ section {
                 font-size: 10px;
                 height: 300px;
                 padding: 0px 31px;
-                box-shadow: 5px 9px 45px 4px rgba(0, 0, 0, 0.03);
+                box-shadow: 0px 0px 15px 0px rgb(34 60 80 / 7%);
                 border-radius: 10px;
                 &:hover {
                     transform: scale(1.1);
@@ -467,6 +443,10 @@ header {
     }
 }
 
+.slider-btn {
+    display: none;
+}
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -547,6 +527,47 @@ header {
     .footer {
         @include column;
     }
+    .slider {
+        overflow: hidden;
+        width: 600px;
+        justify-content: center;
+        margin: auto;
+        height: 320px;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        -webkit-transition: 0.3s ease-in-out;
+        &-btn {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            top: 45%;
+            border-radius: 50%;
+            z-index: 2;
+            cursor: pointer;
+            border: none;
+            background-color: var(--bg-color-white);
+        }
+        &-btn:active {
+            background-color: var(--bg-color-dark-grey);
+            color: var(--bg-color);
+        }
+        &_arrow-left {
+            left: 0px;
+        }
+        &_arrow-right {
+            right: 0px;
+        }
+    }
+    .slider:hover {
+        scale: none;
+    }
+    .slide {
+        position: absolute;
+    }
     .navbar {
         padding: 25px 0px;
     }
@@ -556,17 +577,6 @@ header {
     }
     .main-page_navigation>img {
         width: 50px;
-    }
-    .slider {
-        height: 320px;
-        position: relative;
-        cursor: pointer;
-    }
-    .slider:hover {
-        scale: none;
-    }
-    .slide {
-        position: absolute;
     }
     .footer {
         text-align: center;
@@ -580,9 +590,6 @@ header {
     }
     .section_block-card-block:hover {
         transform: none;
-    }
-    .section_block-card-block {
-        box-shadow: none;
     }
 }
 

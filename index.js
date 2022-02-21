@@ -7,7 +7,11 @@ const maxSlides = slides.length;
 
 
 const goToSlide = function(slide) {
-    slides.forEach((el, i) => el.style.transform = `translateX(${120 * (i-slide)}%)`)
+    if (window.innerWidth <= 1200) {
+        slides.forEach((el, i) => el.style.transform = `translateX(${120 * (i-slide)}%)`);
+        slides.forEach((el, i) => el.style.transform = `box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.2);
+        `);
+    }
 }
 goToSlide(0)
 
