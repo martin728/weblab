@@ -35,6 +35,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 16px;
 }
 
 * {
@@ -43,7 +44,7 @@ html {
 }
 
 h1 {
-    font-size: 100px;
+    font-size: 6rem;
     font-weight: 900;
     width: 90%;
 }
@@ -55,6 +56,32 @@ h2 {
 
 section {
     margin: 130px 0px;
+}
+
+.dots {
+    display: flex;
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    justify-content: space-between;
+    bottom: 5px;
+    align-items: center;
+}
+
+.dot {
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: var(--bg-color-white);
+    border-radius: 60px;
+    border: solid 1px rgb(211, 211, 211);
+    cursor: pointer;
+}
+
+.dot--active {
+    background-color: rgb(211, 211, 211);
+    height: 14px;
+    width: 10px;
 }
 
 .section {
@@ -114,7 +141,7 @@ section {
                 font-size: 10px;
                 height: 300px;
                 padding: 0px 31px;
-                box-shadow: 5px 9px 45px 4px rgba(0, 0, 0, 0.03);
+                box-shadow: 0px 0px 15px 0px rgb(34 60 80 / 7%);
                 border-radius: 10px;
                 &:hover {
                     transform: scale(1.1);
@@ -442,6 +469,10 @@ header {
     }
 }
 
+.slider-btn {
+    display: none;
+}
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -522,6 +553,48 @@ header {
     .footer {
         @include column;
     }
+    .slider {
+        overflow: hidden;
+        width: 600px;
+        justify-content: center;
+        margin: auto;
+        height: 340px;
+        position: relative;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        -webkit-transition: 0.3s ease-in-out;
+        &-btn {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            top: 45%;
+            border-radius: 50%;
+            z-index: 2;
+            cursor: pointer;
+            border: none;
+            background-color: var(--bg-color-white);
+        }
+        &-btn:active {
+            background-color: var(--bg-color-dark-grey);
+            color: var(--bg-color);
+        }
+        &_arrow-left {
+            left: 0px;
+        }
+        &_arrow-right {
+            right: 0px;
+        }
+    }
+    .slider:hover {
+        scale: none;
+    }
+    .slide {
+        position: absolute;
+        transition: transform 500ms ease-in-out 25ms;
+    }
     .navbar {
         padding: 25px 0px;
     }
@@ -532,10 +605,6 @@ header {
     .main-page_navigation>img {
         width: 50px;
     }
-    .section-feedback_team {
-        @include column;
-        align-items: center;
-    }
     .footer {
         text-align: center;
         align-items: center;
@@ -545,6 +614,9 @@ header {
     }
     .footer_locations_city {
         margin: 15px 0px;
+    }
+    .section_block-card-block:hover {
+        transform: none;
     }
 }
 
