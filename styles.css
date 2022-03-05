@@ -41,6 +41,32 @@ section {
   margin: 130px 0px;
 }
 
+.dots {
+  display: flex;
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  justify-content: space-between;
+  bottom: 5px;
+  align-items: center;
+}
+
+.dot {
+  display: flex;
+  height: 10px;
+  width: 10px;
+  background-color: var(--bg-color-white);
+  border-radius: 60px;
+  border: solid 1px lightgray;
+  cursor: pointer;
+}
+
+.dot--active {
+  background-color: lightgray;
+  height: 14px;
+  width: 10px;
+}
+
 .section {
   margin: 130px 0px;
 }
@@ -519,7 +545,7 @@ header,
     width: 600px;
     justify-content: center;
     margin: auto;
-    height: 320px;
+    height: 340px;
     position: relative;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -556,6 +582,7 @@ header,
 
   .slide {
     position: absolute;
+    transition: transform 500ms ease-in-out 25ms;
   }
 
   .navbar {
