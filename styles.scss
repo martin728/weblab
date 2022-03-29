@@ -6,6 +6,7 @@
     --bg-color-turquoise: #8ED4E2;
     --bg-color-red: #E15754;
     --bg-color-dark-grey: #222222;
+    --bg-color-light-grey: #888888;
     --bg-color-white: #ffffff;
     --bg-color-black: #000000;
     --bg-color: #FDF3E5;
@@ -138,9 +139,9 @@ section {
             @include align-center;
             justify-content: space-evenly;
             background: var(--bg-color-white);
-            width: 470px;
             height: 145px;
             position: relative;
+            width: 350px;
             border-radius: 10px;
             z-index: 1;
             box-shadow: 5px 9px 45px 4px rgba(0, 0, 0, 0.03);
@@ -164,7 +165,7 @@ section {
             &-block {
                 margin: 10px;
                 box-sizing: border-box;
-                width: 470px;
+                max-width: 470px;
                 background-color: var(--bg-color-white);
                 font-size: 10px;
                 height: 300px;
@@ -214,7 +215,6 @@ section {
         flex-wrap: wrap;
     }
     &-title {
-        width: 50%;
         margin-bottom: 6.3em;
     }
     &-name {
@@ -344,7 +344,7 @@ header {
 .heading {
     position: relative;
     & h2 {
-        width: 95%;
+        width: 101%;
     }
     &-text {
         font-family: var(--font-family-lato);
@@ -365,9 +365,6 @@ header {
     @include space-between;
 }
 
-.main-page_heading-block,
-.main-page_img,
-.about-us_heading-block,
 .about-us_img {
     width: 45%;
     position: relative;
@@ -430,7 +427,7 @@ header {
     }
     &_navigation {
         @include align-center;
-        width: 90%;
+        width: 115%;
         background-color: var(--bg-color-white);
         border-radius: 10px;
         justify-content: space-evenly;
@@ -440,23 +437,11 @@ header {
     }
 }
 
-.work-section {
-    @include space-between;
-    &_info-block,
-    &_img {
-        width: 45%;
-    }
-}
-
 .contact {
     &_container {
         @include align-center;
     }
-    &_img {
-        width: 50%;
-    }
     &-info {
-        width: 50%;
         box-sizing: border-box;
         padding: 0px 35px;
         box-sizing: border-box;
@@ -580,6 +565,12 @@ header {
     .footer {
         @include column;
     }
+    section {
+        margin: 80px;
+    }
+    h1 {
+        font-size: 4rem;
+    }
     .hamburger {
         display: block;
     }
@@ -611,68 +602,96 @@ header {
         right: -35px;
         top: 100px
     }
-    .slider {
+    .section_block-cards {
         overflow: hidden;
-        width: 600px;
-        justify-content: center;
-        margin: auto;
-        height: 340px;
+        height: 210px;
         position: relative;
-        cursor: pointer;
-        transition: 0.3s ease-in-out;
-        -webkit-transition: 0.3s ease-in-out;
-        &-btn {
-            display: flex;
-            width: 40px;
-            height: 40px;
+        &_btn {
+            bottom: 7px;
             position: absolute;
-            align-items: center;
-            justify-content: center;
-            top: 45%;
-            border-radius: 50%;
-            z-index: 2;
-            cursor: pointer;
-            border: none;
-            background-color: var(--bg-color-white);
-        }
-        &-btn:active {
-            background-color: var(--bg-color-dark-grey);
-            color: var(--bg-color);
-        }
-        &_arrow-left {
-            left: 0px;
-        }
-        &_arrow-right {
-            right: 0px;
+            z-index: 40;
+            background-color: white;
+            border: 0.5px solid gray;
+            border-radius: 50px;
+            width: 80px;
+            height: 25px;
         }
     }
-    .slider:hover {
-        scale: none;
-    }
-    .slide {
+}
+
+.slider {
+    overflow: hidden;
+    max-width: 600px;
+    justify-content: center;
+    margin: auto;
+    height: 340px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    &-btn {
+        display: flex;
+        width: 40px;
+        height: 40px;
         position: absolute;
-        transition: transform 500ms ease-in-out 25ms;
-    }
-    .main-page_navigation {
-        margin: 0px;
-        transform: none
-    }
-    .main-page_navigation>img {
-        width: 50px;
-    }
-    .footer {
-        text-align: center;
         align-items: center;
+        justify-content: center;
+        top: 45%;
+        border-radius: 50%;
+        z-index: 2;
+        cursor: pointer;
+        border: none;
+        background-color: var(--bg-color-white);
     }
-    .footer>div {
-        margin: 20px 0px;
+    &-btn:active {
+        background-color: var(--bg-color-dark-grey);
+        color: var(--bg-color);
     }
-    .footer_locations_city {
-        margin: 15px 0px;
+    &_arrow-left {
+        left: 0px;
+        border: 0.5px solid var(--bg-color-light-grey);
     }
-    .section_block-card-block:hover {
-        transform: none;
+    &_arrow-right {
+        right: 0px;
+        border: 0.5px solid var(--bg-color-light-grey);
     }
+}
+
+.slider:hover {
+    scale: none;
+}
+
+.slide {
+    position: absolute;
+    transition: transform 500ms ease-in-out 25ms;
+}
+
+.main-page_navigation {
+    margin: 0px;
+    transform: none
+}
+
+.main-page_navigation>img {
+    width: 50px;
+}
+
+.footer {
+    text-align: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    height: 100%;
+}
+
+.footer>div {
+    margin: 20px 0px;
+}
+
+.footer_locations_city {
+    margin: 15px 0px;
+}
+
+.section_block-card-block:hover {
+    transform: none;
 }
 
 .message {

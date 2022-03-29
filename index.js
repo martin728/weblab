@@ -1,8 +1,21 @@
 const hamburger = document.querySelector(".hamburger")
 const navBar = document.querySelector(".navbar");
+const cardsBtn = document.querySelector(".section_block-cards_btn");
+const cardsBlock = document.querySelector(".section_block-cards");
+let switchBtn = true;
 hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     navBar.classList.toggle("active");
+})
+cardsBtn.addEventListener("click", () => {
+    cardsBlock.style.height = '100%';
+    switchBtn = !switchBtn;
+    cardsBtn.innerText = 'less';
+
+    if (!switchBtn) {
+        cardsBlock.style.height = '210px';
+        cardsBtn.innerText = 'more';
+    }
 })
 class Slider {
     constructor() {
