@@ -1,64 +1,92 @@
-let slides = document.querySelectorAll(".slide")
-let sliderBtnRight = document.querySelector(".slider_arrow-right")
-let sliderBtnLeft = document.querySelector(".slider_arrow-left")
-let dotContainer = document.querySelector(".dots")
-
-let currentSlide = 0;
-const maxSlides = slides.length;
-
-
-const goToSlide = function(slide) {
-    if (window.innerWidth <= 1200) {
-        slides.forEach((el, i) => el.style.transform = `translateX(${120 * (i-slide)}%)`);
-        slides.forEach((el, i) => el.style.transform = `box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.2);
-        `);
+class Slider {
+    constructor() {
+        this.slides = document.querySelectorAll(".slide")
+        this.sliderBtnRight = document.querySelector(".slider_arrow-right")
+        this.sliderBtnLeft = document.querySelector(".slider_arrow-left")
+        this.dotContainer = document.querySelector(".dots")
+        this.currentSlide = 0;
+        this.maxSlides = this.slides.length;
+        this.createDotss = true;
     }
-}
 
-const nextSlide = function() {
-    if (currentSlide === maxSlides - 1) {
-        currentSlide = 0;
-    } else {
-        currentSlide++;
+    goToSlide(slide) {
+        if (window.innerWidth <= 1200) {
+            this.slides.forEach((el, i) => el.style.transform = `translateX(${120 * (i-slide)}%)`);
+            this.slides.forEach((el, i) => el.style.transform = `box-shadow: 0px 0px 15px 0px rgba(34, 60, 80, 0.2);
+            `);
+        }
     }
-    goToSlide(currentSlide);
-    activateDot(currentSlide)
-}
 
-const prewSlide = function() {
-    if (currentSlide === 0) {
-        currentSlide = maxSlides - 1;
-    } else {
-        currentSlide--;
+    nextSlide() {
+        console.log(this.currentSlide)
+        if (this.currentSlide === this.maxSlides - 1) {
+            this.currentSlide = 0;
+        } else {
+            this.currentSlide++;
+        }
+        this.goToSlide(this.currentSlide);
+        this.activateDot(this.currentSlide)
     }
-    goToSlide(currentSlide);
-    activateDot(currentSlide)
+
+    prewSlide() {
+        if (this.currentSlide === 0) {
+            this.currentSlide = this.maxSlides - 1;
+        } else {
+            this.currentSlide--;
+        }
+        this.goToSlide(this.currentSlide);
+        this.activateDot(this.currentSlide);
+    }
+
+    createDots() {
+        let dot;
+        if (this.createDotss) {
+            this.slides.forEach(function(_, i) {
+                dot = document.createElement("button");
+                dot.classList.add("dot");
+                dot.dataset.slide = `${i}`;
+                this.dotContainer.appendChild(dot);
+            }, this);
+        }
+    };
+
+    // createDots() {
+    //     this.slides.forEach(function(_, i) {
+    //         this.dotContainer.insertAdjacentHTML(
+    //             'beforeend',
+    //             `<button class="dot" data-slide="${i}"></button>`
+    //         );
+    //     }, this);
+    // };
+
+    activateDot(slide) {
+        document.querySelectorAll(".dot").forEach(dot => dot.classList.remove('dot--active'))
+        document.querySelector(`.dot[data-slide="${slide}"]`).classList.add('dot--active')
+    }
 
 }
 
-const createDots = function() {
-    slides.forEach(function(_, i) {
-        dotContainer.insertAdjacentHTML(
-            'beforeend',
-            `<button class="dot" data-slide="${i}"></button>`
-        );
-    });
-};
+let slider1 = new Slider();
 
-const activateDot = function(slide) {
-    document.querySelectorAll(".dot").forEach(dot => dot.classList.remove('dot--active'))
-    document.querySelector(`.dot[data-slide="${slide}"]`).classList.add('dot--active')
-}
+slider1.goToSlide(0)
+slider1.createDots();
 
-goToSlide(0)
-createDots();
+slider1.sliderBtnRight.addEventListener('click', () => slider1.nextSlide());
+slider1.sliderBtnLeft.addEventListener('click', () => slider1.prewSlide());
 
-sliderBtnRight.addEventListener('click', nextSlide);
-sliderBtnLeft.addEventListener('click', prewSlide);
-dotContainer.addEventListener('click', function(e) {
+slider1.dotContainer.addEventListener('click', function(e) {
     if (e.target.classList.contains('dot')) {
         const { slide } = e.target.dataset;
-        goToSlide(slide);
-        activateDot(slide);
+        slider1.goToSlide(slide);
+        slider1.activateDot(slide);
     }
 })
+
+//викл крапочки done
+
+//вкл викл автоплей
+
+// babel
+// flattened!!
+//кількість крапочок.кількість слайдів
+//responsive
