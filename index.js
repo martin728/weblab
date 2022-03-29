@@ -1,3 +1,9 @@
+const hamburger = document.querySelector(".hamburger")
+const navBar = document.querySelector(".navbar");
+hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navBar.classList.toggle("active");
+})
 class Slider {
     constructor() {
         this.slides = document.querySelectorAll(".slide")
@@ -6,7 +12,8 @@ class Slider {
         this.dotContainer = document.querySelector(".dots")
         this.currentSlide = 0;
         this.maxSlides = this.slides.length;
-        this.createDotss = true;
+        this.createDotss = false;
+        this.setAutoplay = false;
     }
 
     goToSlide(slide) {
@@ -63,14 +70,18 @@ class Slider {
         document.querySelectorAll(".dot").forEach(dot => dot.classList.remove('dot--active'))
         document.querySelector(`.dot[data-slide="${slide}"]`).classList.add('dot--active')
     }
-
+    autoplay() {
+        if (this.setAutoplay) {
+            setInterval(() => this.nextSlide(), 2000);
+        }
+    }
 }
 
 let slider1 = new Slider();
 
 slider1.goToSlide(0)
 slider1.createDots();
-
+slider1.autoplay()
 slider1.sliderBtnRight.addEventListener('click', () => slider1.nextSlide());
 slider1.sliderBtnLeft.addEventListener('click', () => slider1.prewSlide());
 
@@ -83,8 +94,7 @@ slider1.dotContainer.addEventListener('click', function(e) {
 })
 
 //викл крапочки done
-
-//вкл викл автоплей
+//вкл викл автоплей done
 
 // babel
 // flattened!!
